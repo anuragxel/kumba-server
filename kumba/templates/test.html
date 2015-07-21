@@ -1,0 +1,22 @@
+{% url '/test/' as test %}
+<form action="{{ test }}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% if form.non_field_errors %}
+	<div class="alert alert-danger">
+		<br><p>{{ form.non_field_errors }}</p>
+	</div>
+	{% endif %}
+	<p>{{ form.docfile.help_text }}</p>
+	<p>
+	{% if form.docfile.errors %}
+	<div class="alert alert-danger">{{ form.docfile.errors }}</div>
+	{% endif %}
+	{{ form.image }}
+	{{ form.image_class }}
+	{{ form.text }}
+	</p>
+	<input type="hidden" name="lang" id="lang" value="English"/>
+	<p><input type="submit" class="btn btn-success submitbutton" value="Upload" /></p>
+</form>
+<p class="message"></p>
+<hr>
